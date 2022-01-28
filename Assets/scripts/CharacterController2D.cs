@@ -22,12 +22,16 @@ public class CharacterController2D : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
 
+    private bool jumpLimitReached = true;       // jumpLimit for holding in jump button
+    private bool jumping = false;               // true if currently jumping
+    private float jumpTimeCounter = 0;          
+
     [Header("Events")]
     [Space]
 
     public UnityEvent OnLandEvent;
 
-    [System.Serializable]
+    [Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
     public BoolEvent OnCrouchEvent;
@@ -63,9 +67,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    bool jumpLimitReached = true;
-    bool jumping = false;
-    float jumpTimeCounter = 0;
+
 
     public void Move(float move, bool crouch, bool jump)
     {
@@ -144,7 +146,7 @@ public class CharacterController2D : MonoBehaviour
         // If the player is holding jump
         else if (jumping && !jumpLimitReached)
         {
-            if (!Input.GetKey(KeyCode.W))
+            if (!Input.GetButton("Jump"))
             {
                 jumping = false;
             }
