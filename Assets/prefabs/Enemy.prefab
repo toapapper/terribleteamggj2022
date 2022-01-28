@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 8436386777013886453}
   - component: {fileID: 8436386777013886455}
   - component: {fileID: 8436386777013886454}
+  - component: {fileID: 6064477984805413520}
   - component: {fileID: 8436386777013886452}
   m_Layer: 0
   m_Name: Enemy
@@ -257,6 +258,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   maxSpeed: 5
+--- !u!114 &6064477984805413520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8436386777013886441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b253f0b46ccdd8478acb3c2f6f0df40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positiveCharge: 0
 --- !u!61 &8436386777013886452
 BoxCollider2D:
   m_ObjectHideFlags: 0
