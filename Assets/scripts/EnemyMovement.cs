@@ -106,6 +106,14 @@ public class EnemyMovement : MonoBehaviour
         //body.AddForce(moveSpeed, ForceMode2D.Force);
     }
 
+    void TurnTo(float dir)
+    {
+        body.velocity = new Vector2(0, body.velocity.y);
+        velocity *= dir;
+        //body.velocity = moveSpeed;
+        //body.AddForce(moveSpeed, ForceMode2D.Force);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "EnemyTurnTrigger")
@@ -116,14 +124,18 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        touchingWall = Physics2D.OverlapArea(sideTopLeft.position, sideBottomRight.position, groundLayers);
+		touchingWall = Physics2D.OverlapArea(sideTopLeft.position, sideBottomRight.position, groundLayers);
+
         if (touchingWall)
         {
+            //float dir = Mathf.Sign(transform.position.x - collision.transform.position.x);
+            //TurnTo(dir);
             TurnAround();
         }
         if (collision.collider.tag == "Enemy")
         {
             TurnAround();
         }
+        touchingWall = false;
     }
 }
