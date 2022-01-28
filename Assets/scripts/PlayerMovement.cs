@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    // public MagnetismScript;
     [SerializeField] float runSpeed = 10f;
 
     bool jump = false;
@@ -27,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("FIRE1");
+            controller.MagnetController.PositiveCharge = !controller.MagnetController.PositiveCharge;
         }
     }
 
