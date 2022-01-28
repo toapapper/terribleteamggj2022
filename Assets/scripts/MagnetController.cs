@@ -50,12 +50,8 @@ public class MagnetController : MonoBehaviour
 		Vector2 direction = new Vector2(effectingObject.position.x, effectingObject.position.y) - new Vector2(objectToEffect.position.x, objectToEffect.position.y);
 		float distance = direction.magnitude;
 
-		//if (distance == 0f)
-		//	return;
-
 		float forceMagnitude = magneticForce / Mathf.Pow(distance, 2);
 		Vector2 force = direction.normalized * forceMagnitude * forceDirection;
-
 		objectToEffect.AddForce(force);
 	}
 
