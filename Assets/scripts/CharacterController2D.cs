@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System;
+using System.Collections;
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
+    [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player starts jumping.
+    [SerializeField] private float m_AdditionalJumpForce = 100f;                // Amount of force added during the jump if holding jump key.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
@@ -60,6 +63,9 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    bool jumpLimitReached = true;
+    bool jumping = false;
+    float jumpTimeCounter = 0;
 
     public void Move(float move, bool crouch, bool jump)
     {
@@ -124,15 +130,39 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
             }
         }
+
         // If the player should jump...
-        if (m_Grounded && jump)
+        if (m_Grounded && jump) 
         {
             // Add a vertical force to the player.
             m_Grounded = false;
+            jumping = true;
+            jumpLimitReached = false;
+            jumpTimeCounter = 0;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
-    }
+        // If the player is holding jump
+        else if (jumping && !jumpLimitReached)
+        {
+            if (!Input.GetKey(KeyCode.W))
+            {
+                jumping = false;
+            }
 
+            jumpTimeCounter += Time.deltaTime;
+            if (jumpTimeCounter >= 0.2)
+            {
+                jumpLimitReached = true;
+                jumpTimeCounter = 0;
+                jump = false;
+                jumping = false;
+            }
+            else
+            {
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_AdditionalJumpForce));
+            }
+        }
+    }
 
     private void Flip()
     {

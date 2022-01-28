@@ -81,9 +81,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 1000
+  m_AdditionalJumpForce: 100
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
-  m_AirControl: 0
+  m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 65
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6491188090365853814}
-  runSpeed: 80
+  runSpeed: 150
 --- !u!1 &6491188091048884482
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
+        if (Input.GetButtonUp("Jump"))
+        {
+            jump = false;
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("FIRE1");
