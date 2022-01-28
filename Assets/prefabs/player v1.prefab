@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251692ce1e9604f438dc3d81079de488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 1000
-  m_AdditionalJumpForce: 100
+  m_JumpForce: 800
+  m_AdditionalJumpForce: 80
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
