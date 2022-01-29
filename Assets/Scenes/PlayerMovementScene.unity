@@ -1460,10 +1460,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6491188090365853704, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
-      propertyPath: m_GravityScale
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6491188090365853706, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1511,26 +1507,6 @@ PrefabInstance:
     - target: {fileID: 6491188090365853711, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
       propertyPath: m_Name
       value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6491188090365853813, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
-      propertyPath: runSpeed
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 6491188090365853814, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
-      propertyPath: runSpeed
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 6491188090365853814, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
-      propertyPath: m_JumpForce
-      value: 1300
-      objectReference: {fileID: 0}
-    - target: {fileID: 6491188090365853814, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
-      propertyPath: m_AdditionalJumpForce
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6491188090365853814, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
-      propertyPath: airControlAccelleration
-      value: 0.819
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
