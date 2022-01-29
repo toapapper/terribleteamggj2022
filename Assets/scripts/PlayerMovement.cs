@@ -6,10 +6,9 @@ using UnityEngine.Audio;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    [SerializeField]
-    AudioSource jumpSFX;
-    [SerializeField]
-    AudioSource walkSFX;
+    [SerializeField] AudioSource jumpSFX;
+    [SerializeField] AudioSource walkSFX;
+    [SerializeField] private AudioSource magnetSFX;
     bool jump = false;
     bool walking = false;
     float horizontalMove = 0f;
@@ -73,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ChangePole()
     {
+        magnetSFX.Play();
         controller.MagnetController.PositiveCharge = !controller.MagnetController.PositiveCharge;
         redPole.gameObject.SetActive(controller.MagnetController.PositiveCharge);
         bluePole.gameObject.SetActive(!controller.MagnetController.PositiveCharge);
