@@ -214,11 +214,7 @@ public class CharacterController2D : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GameManager.Instance.PlayerDeath();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "FinishTrigger")
+        if (collision.gameObject.tag == "FinishTrigger")
         {
             GameManager.Instance.FinishLevel();
         }

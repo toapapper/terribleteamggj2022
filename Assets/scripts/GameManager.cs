@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private Scene scene;
     private GameObject player;
-    int currentScene;
+    int currentScene = 1;
     float timer;
 
 
@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
         }
 
         scene = SceneManager.GetActiveScene();
-        player = FindObjectOfType<CharacterController2D>().gameObject;
 
+        player = FindObjectOfType<CharacterController2D>()?.gameObject;
     }
 
     private void Update()
@@ -71,19 +71,20 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("Highscore" + currentScene, (Mathf.Round(timer * 100f) * 0.01f));
         }
         //SaveSystem.SaveTime(timer, currentScene);
-        //Debug.Log("Save time: " + timer + " Save current level: " + currentScene);
-        //Debug.Log("Best Playerpref time:" + PlayerPrefs.GetFloat("Highscore" + currentScene));
+        Debug.Log("Save time: " + timer + " Save current level: " + currentScene);
+        Debug.Log("Best Playerpref time:" + PlayerPrefs.GetFloat("Highscore" + currentScene));
         ChangeToNextScene();
     }
 
     public void ChangeToNextScene()
     {
         currentScene++;
+        Debug.LogWarning("Currentscene:" + currentScene);
         SceneManager.LoadScene(currentScene);
         ResetTimer();
     }
 
-    void ResetTimer()
+    public void ResetTimer()
     {
         timer = 0;
     }
