@@ -63,23 +63,23 @@ public class MagnetController : MonoBehaviour
         }
 	}
 
-	#region Colliders
-	/// <summary>
-	/// Adds repelling force to enemy on collision
-	/// </summary>
-	/// <param name="collision"></param>
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.tag == "Enemy")
-		{
-			Rigidbody2D enemyRB = collision.gameObject.GetComponent<Rigidbody2D>();
-			Vector2 direction = new Vector2(transform.position.x, transform.position.y) - new Vector2(collision.transform.position.x, collision.transform.position.y);
-			Vector2 force = direction.normalized * collisionForce;
-			enemyRB.velocity = Vector2.zero;
-			collision.gameObject.GetComponent<MagneticObject>().RB.AddForce(-force);
-		}
-	}
-	#endregion
+	//#region Colliders
+	///// <summary>
+	///// Adds repelling force to enemy on collision
+	///// </summary>
+	///// <param name="collision"></param>
+	//private void OnCollisionEnter2D(Collision2D collision)
+	//{
+	//	if (collision.gameObject.tag == "Enemy")
+	//	{
+	//		Rigidbody2D enemyRB = collision.gameObject.GetComponent<Rigidbody2D>();
+	//		Vector2 direction = new Vector2(transform.position.x, transform.position.y) - new Vector2(collision.transform.position.x, collision.transform.position.y);
+	//		Vector2 force = direction.normalized * collisionForce;
+	//		enemyRB.velocity = Vector2.zero;
+	//		collision.gameObject.GetComponent<MagneticObject>().RB.AddForce(-force);
+	//	}
+	//}
+	//#endregion
 
 	#region Trigger
 	/// <summary>
