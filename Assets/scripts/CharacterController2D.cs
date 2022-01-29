@@ -7,6 +7,7 @@ public class CharacterController2D : MonoBehaviour
 {
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player starts jumping.
     [SerializeField] private float m_AdditionalJumpForce = 100f;                // Amount of force added during the jump if holding jump key.
+    [SerializeField] [Range(0, 0.5f)] float jumpLimitTime = 0.2f;
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
@@ -21,6 +22,11 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
+
+    bool jumpLimitReached = true;
+    bool jumping = false;
+    float jumpTimeCounter = 0;
+    
 
     private MagnetController magnetController;
 
@@ -68,10 +74,6 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    bool jumpLimitReached = true;
-    bool jumping = false;
-    float jumpTimeCounter = 0;
-
     public void Move(float move, bool crouch, bool jump)
     {
         // If crouching, check to see if the character can stand up
@@ -87,7 +89,6 @@ public class CharacterController2D : MonoBehaviour
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
-
             // If crouching
             if (crouch)
             {
@@ -155,7 +156,7 @@ public class CharacterController2D : MonoBehaviour
             }
 
             jumpTimeCounter += Time.deltaTime;
-            if (jumpTimeCounter >= 0.2)
+            if (jumpTimeCounter >= jumpLimitTime)
             {
                 jumpLimitReached = true;
                 jumpTimeCounter = 0;
