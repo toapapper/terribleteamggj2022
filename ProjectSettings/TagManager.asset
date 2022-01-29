@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyTurnTrigger
   - DeathBox
+  - FinishTrigger
   layers:
   - Default
   - TransparentFX
