@@ -12,6 +12,8 @@ public class MagnetController : MonoBehaviour
 
     [SerializeField] private bool positiveCharge;
 
+	public static bool falloff_mode = false;
+
 	public bool PositiveCharge { get { return positiveCharge; } set { positiveCharge = value; } }
 
     void Awake()
@@ -48,11 +50,17 @@ public class MagnetController : MonoBehaviour
 	public void ApplyMagneticForce(Rigidbody2D effectingObject, Rigidbody2D objectToEffect, int forceDirection)
 	{
 		Vector2 direction = new Vector2(effectingObject.position.x, effectingObject.position.y) - new Vector2(objectToEffect.position.x, objectToEffect.position.y);
-		float distance = direction.magnitude;
-
-		float forceMagnitude = magneticForce / Mathf.Pow(distance, 2);
-		Vector2 force = direction.normalized * forceMagnitude * forceDirection;
-		objectToEffect.AddForce(force);
+        if (falloff_mode)
+        {
+			float distance = direction.magnitude;
+			float forceMagnitude = magneticForce / Mathf.Pow(distance, 2);
+			Vector2 force = direction.normalized * forceMagnitude * forceDirection;
+			objectToEffect.AddForce(force);
+        }
+		else if (!falloff_mode)
+        {
+			objectToEffect.AddForce(magneticForce * forceDirection * direction.normalized);
+        }
 	}
 
 	#region Colliders
