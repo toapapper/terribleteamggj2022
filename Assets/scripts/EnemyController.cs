@@ -21,16 +21,16 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
-        Instantiate(particleEffect, transform);
+        Instantiate(particleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Die();
+        //if (collision.gameObject.tag == "Enemy")
+        //{
+        //    Die();
 
-        }
+        //}
     }
 }
