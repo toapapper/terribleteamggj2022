@@ -30,8 +30,8 @@ public class CharacterController2D : MonoBehaviour
     bool jumpLimitReached = true;
     bool jumping = false;
     float jumpTimeCounter = 0;
-    
 
+    public bool isGroundedAndMoving { get { return m_Grounded && Input.anyKey; } }
     private MagnetController magnetController;
 
     [Header("Events")]

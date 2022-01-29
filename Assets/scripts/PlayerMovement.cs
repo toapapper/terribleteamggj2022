@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    
-
+    [SerializeField]
+    AudioSource jumpSFX;
+    [SerializeField]
+    AudioSource walkSFX;
     bool jump = false;
+    bool walking = false;
     float horizontalMove = 0f;
 
     [SerializeField]
@@ -20,10 +24,38 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * controller.runSpeed;
-
+        if (horizontalMove != 0 && jump == false)
+        {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
+        }
+        Debug.Log("walking" + walking);
+        if (walking == true)
+        {
+            if (!walkSFX.isPlaying)
+            {
+                if (walkSFX.isPlaying == false)
+                {
+                    walkSFX.Play();
+                }
+                else
+                {
+                    walkSFX.Stop();
+                }
+            }
+            
+        }
+        else
+        {
+            walkSFX.Stop();
+        }
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            jumpSFX.Play();
         }
         if (Input.GetButtonUp("Jump"))
         {
