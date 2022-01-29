@@ -30,6 +30,8 @@ public class CharacterController2D : MonoBehaviour
     bool currentlyJumping = false;
     float jumpTimeCounter = 0;
 
+    private Animator m_animator;
+
     public bool isGroundedAndMoving
     {
         get { return m_Grounded && Input.GetButton("Horizontal"); }
@@ -51,6 +53,8 @@ public class CharacterController2D : MonoBehaviour
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         magnetController = GetComponent<MagnetController>();
+
+        m_animator = GetComponent<Animator>();
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
@@ -127,7 +131,12 @@ public class CharacterController2D : MonoBehaviour
 
             if (!m_Grounded)
             {
+                m_animator.SetBool("in_air", false);
                 targetVelocity.x *= airControlAccelleration;
+            }
+            else
+            {
+                m_animator.SetBool("in_air", true);
             }
 
             // And then smoothing it out and applying it to the character
@@ -205,11 +214,7 @@ public class CharacterController2D : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GameManager.Instance.PlayerDeath();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "FinishTrigger")
+        if (collision.gameObject.tag == "FinishTrigger")
         {
             GameManager.Instance.FinishLevel();
         }

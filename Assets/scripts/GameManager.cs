@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
 
     private Scene scene;
     private GameObject player;
-    int currentScene;
+    int currentScene = 1;
     float timer;
-    private TMP_Text timeText;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -32,18 +32,13 @@ public class GameManager : MonoBehaviour
         }
 
         scene = SceneManager.GetActiveScene();
-        player = FindObjectOfType<CharacterController2D>().gameObject;
-        timeText = FindObjectOfType<TMP_Text>();
+
+        player = FindObjectOfType<CharacterController2D>()?.gameObject;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
-        if (timeText)
-        {
-            timeText.text = (Mathf.Round(timer * 100f) * 0.01f).ToString();
-
-        }
     }
 
     public void PlayerDeath()
@@ -64,6 +59,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(deathDelay);
         SceneManager.LoadScene(scene.name);
         player.GetComponent<PlayerMovement>().enabled = false;
+        ResetTimer();
         yield return null;
     }
 
@@ -72,23 +68,29 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Timer: " + timer);
         if (timer < PlayerPrefs.GetFloat("Highscore" + currentScene) || PlayerPrefs.GetFloat("Highscore" + currentScene) == 0)
         {
-            PlayerPrefs.SetFloat("Highscore" + currentScene, timer);
+            PlayerPrefs.SetFloat("Highscore" + currentScene, (Mathf.Round(timer * 100f) * 0.01f));
         }
         //SaveSystem.SaveTime(timer, currentScene);
-        //Debug.Log("Save time: " + timer + " Save current level: " + currentScene);
-        //Debug.Log("Best Playerpref time:" + PlayerPrefs.GetFloat("Highscore" + currentScene));
+        Debug.Log("Save time: " + timer + " Save current level: " + currentScene);
+        Debug.Log("Best Playerpref time:" + PlayerPrefs.GetFloat("Highscore" + currentScene));
         ChangeToNextScene();
     }
 
     public void ChangeToNextScene()
     {
         currentScene++;
+        Debug.LogWarning("Currentscene:" + currentScene);
         SceneManager.LoadScene(currentScene);
-        StartNewTimer();
+        ResetTimer();
     }
 
-    void StartNewTimer()
+    public void ResetTimer()
     {
         timer = 0;
+    }
+
+    public float GetTimer()
+    {
+        return timer;
     }
 }

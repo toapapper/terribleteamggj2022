@@ -140,7 +140,7 @@ public class EnemyMovement : MonoBehaviour
         if (touchingWall)
         {
             float dir = Mathf.Sign(transform.position.x - collision.transform.position.x);
-            Debug.Log(dir);
+            //Debug.Log(dir);
             //TurnTo(dir);
             if (dir != direction)
             {
@@ -151,7 +151,7 @@ public class EnemyMovement : MonoBehaviour
         if (collision.collider.tag == "Enemy")
         {
             float dir = Mathf.Sign(transform.position.x - collision.transform.position.x);
-            Debug.Log(dir);
+            //Debug.Log(dir);
             //TurnTo(dir);
             if (dir != direction)
             {

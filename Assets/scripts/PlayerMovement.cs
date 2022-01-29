@@ -15,19 +15,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem redPole;
     [SerializeField] ParticleSystem bluePole;
 
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * controller.runSpeed;
-        if (horizontalMove != 0 && jump == false)
+        if (controller.isGroundedAndMoving)
         {
             walking = true;
+            animator.SetBool("walking", true);
         }
         else
         {
             walking = false;
+            animator.SetBool("walking", false);
         }
-        Debug.Log("walking" + walking);
         if (walking == true)
         {
             if (!walkSFX.isPlaying)
