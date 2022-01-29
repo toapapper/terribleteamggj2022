@@ -7,7 +7,7 @@ public class MagnetController : MonoBehaviour
 	[SerializeField]private float magneticForce_on_others = 150f;
 	[SerializeField]private float magneticForce_on_me = 250f;
 	[SerializeField] private float collisionForce = 2000f;
-	
+
 	private Rigidbody2D rb;
     private List<MagneticObject> nearbyObjects;
 	private CircleCollider2D collider;
@@ -107,7 +107,7 @@ public class MagnetController : MonoBehaviour
         }
 	}
 
-	//Metod som bara körs i editorn, när ett värde ändrats
+	//Metod som bara kï¿½rs i editorn, nï¿½r ett vï¿½rde ï¿½ndrats
     private void OnValidate()
     {
 		if(collider == null)
@@ -160,7 +160,7 @@ public class MagnetController : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D other)
     {
 		if (other.tag == "MagneticGround" || other.tag == "Enemy")
-        {			
+        {
 			if (!nearbyObjects.Contains(other.GetComponent<MagneticObject>()))
             {
                 nearbyObjects.Add(other.GetComponent<MagneticObject>());
