@@ -763,6 +763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 3410839265295661976, guid: 576428f608c41a94eb2445e97b9002c7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3410839265295661978, guid: 576428f608c41a94eb2445e97b9002c7, type: 3}
       propertyPath: m_RootOrder
       value: 0
