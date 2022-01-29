@@ -150,7 +150,14 @@ public class EnemyMovement : MonoBehaviour
         }
         if (collision.collider.tag == "Enemy")
         {
-            TurnAround();
+            float dir = Mathf.Sign(transform.position.x - collision.transform.position.x);
+            Debug.Log(dir);
+            //TurnTo(dir);
+            if (dir != direction)
+            {
+                TurnAround();
+
+            }
         }
         touchingWall = false;
     }
