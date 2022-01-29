@@ -6,20 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     
-
     bool jump = false;
     float horizontalMove = 0f;
 
-    [SerializeField]
-    ParticleSystem redPole;
-    [SerializeField] 
-    ParticleSystem bluePole;
-
+    [SerializeField] ParticleSystem redPole;
+    [SerializeField] ParticleSystem bluePole;
 
     // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * controller.runSpeed;
+
+        
 
         if (Input.GetButtonDown("Jump"))
         {

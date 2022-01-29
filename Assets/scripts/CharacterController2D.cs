@@ -28,16 +28,17 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 m_Velocity = Vector3.zero;
 
     bool jumpLimitReached = true;
-    bool jumping = false;
+    bool currentlyJumping = false;
     float jumpTimeCounter = 0;
-    
+
+    public bool isGroundedAndMoving
+    {
+        get { return m_Grounded && Input.GetButton("Horizontal"); }
+    }
 
     private MagnetController magnetController;
 
-    [Header("Events")]
-    [Space]
-
-    public UnityEvent OnLandEvent;
+    [Header("Events")][Space] public UnityEvent OnLandEvent;
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
@@ -150,30 +151,32 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // If the player should jump...
-        if (m_Grounded && jump) 
+        if (m_Grounded && jump && !currentlyJumping) 
         {
             // Add a vertical force to the player.
             m_Grounded = false;
-            jumping = true;
+            currentlyJumping = true;
             jumpLimitReached = false;
             jumpTimeCounter = 0;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            jump = false;
         }
         // If the player is holding jump
-        else if (jumping && !jumpLimitReached)
+        else if (currentlyJumping && !jumpLimitReached)
         {
             if (!Input.GetKey(KeyCode.W))
             {
-                jumping = false;
+                currentlyJumping = false;
+                jumpLimitReached = true;
             }
 
             jumpTimeCounter += Time.deltaTime;
-            if (jumpTimeCounter >= jumpLimitTime)
+            if (currentlyJumping && jumpTimeCounter >= jumpLimitTime)
             {
                 jumpLimitReached = true;
                 jumpTimeCounter = 0;
                 jump = false;
-                jumping = false;
+                currentlyJumping = false;
             }
             else
             {
