@@ -410,6 +410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6491188090365853814}
+  redPole: {fileID: 0}
+  bluePole: {fileID: 0}
 --- !u!1 &6491188091048884482
 GameObject:
   m_ObjectHideFlags: 0
