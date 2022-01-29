@@ -34,6 +34,10 @@ public class PlayerAttack : MonoBehaviour
         for (int i = 0; i < objectsWithin.Count; i++)
         {
             direction += transform.position - objectsWithin[i].transform.position;
+            if (objectsWithin[i].CompareTag("Enemy"))
+            {
+                objectsWithin[i].gameObject.GetComponent<EnemyController>().Die();
+            }
         }
         direction.Normalize();
         direction.z = 0;
@@ -55,7 +59,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("MagneticGround") && !objectsWithin.Contains(collision.gameObject))
+        if (collision.CompareTag("MagneticGround") && !objectsWithin.Contains(collision.gameObject) ||
+            collision.CompareTag("Enemy") && !objectsWithin.Contains(collision.gameObject))
         {
             objectsWithin.Add(collision.gameObject);
             Debug.Log("ADDED");
@@ -64,7 +69,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("MagneticGround") && objectsWithin.Contains(collision.gameObject))
+        if (collision.CompareTag("MagneticGround") && objectsWithin.Contains(collision.gameObject) ||
+            collision.CompareTag("Enemy") && objectsWithin.Contains(collision.gameObject))
         {
             objectsWithin.Remove(collision.gameObject);
             Debug.Log("Removed");
