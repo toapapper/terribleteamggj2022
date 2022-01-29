@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackCD = 0.5f;
     private float timer;
     private List<GameObject> objectsWithin;
+    [SerializeField] private float knockback = 1000;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
         direction.Normalize();
         direction.z = 0;
         Debug.Log("DIR = " + direction);
-        GetComponentInParent<Rigidbody2D>().AddForce(direction * 3000);
+        GetComponentInParent<Rigidbody2D>().AddForce(direction * knockback);
         GetComponentInParent<PlayerMovement>().ChangePole();
 
     }
