@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4369173656710866047}
   - component: {fileID: 2569925807958205871}
   - component: {fileID: 969763127820464645}
+  - component: {fileID: 1079195630}
   m_Layer: 0
   m_Name: BlueEnemy
   m_TagString: Enemy
@@ -227,6 +228,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positiveCharge: 0
+--- !u!114 &1079195630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369173656710866018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb933c762e709438056e4985e79ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleEffect: {fileID: 7038611367004601817, guid: f4c7a0696d675e146a03d17ed4a470ed, type: 3}
 --- !u!1 &4369173656820275896
 GameObject:
   m_ObjectHideFlags: 0
