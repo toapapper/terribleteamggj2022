@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    [SerializeField] float runSpeed = 10f;
+    
 
     bool jump = false;
     float horizontalMove = 0f;
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal") * controller.runSpeed;
 
         if (Input.GetButtonDown("Jump"))
         {
