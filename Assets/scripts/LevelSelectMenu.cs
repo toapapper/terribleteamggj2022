@@ -16,8 +16,8 @@ public class LevelSelectMenu : MonoBehaviour
     {
         for(int i=0; i<highscores.Count; i++)
         {
-            highscores[i].text ="Highscore: " + PlayerPrefs.GetFloat("Highscore" + i).ToString();
-            if(PlayerPrefs.GetFloat("Highscore" + (i-1)) == 0 && i != 0)
+            highscores[i].text ="Highscore: " + PlayerPrefs.GetFloat("Highscore" + (i+1)).ToString();
+            if(PlayerPrefs.GetFloat("Highscore" + i) == 0 && i != 0)
             {
                 levelButtons[i].interactable = false;
             }
@@ -31,5 +31,6 @@ public class LevelSelectMenu : MonoBehaviour
     {
         Debug.Log("load level");
         SceneManager.LoadScene(level);
+        GameManager.Instance.ResetTimer();
     }
 }

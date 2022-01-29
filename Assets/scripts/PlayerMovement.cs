@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
         {
             walking = false;
         }
-        Debug.Log("walking" + walking);
         if (walking == true)
         {
             if (!walkSFX.isPlaying)
