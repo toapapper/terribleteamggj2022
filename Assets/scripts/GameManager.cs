@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
 
 	public void PlayerDeath()
 	{
-        //Deathanimation on player position
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.GetComponent<MagnetController>().enabled = false;
