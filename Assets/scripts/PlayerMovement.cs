@@ -15,6 +15,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem redPole;
     [SerializeField] ParticleSystem bluePole;
 
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,10 +29,12 @@ public class PlayerMovement : MonoBehaviour
         if (controller.isGroundedAndMoving)
         {
             walking = true;
+            animator.SetBool("walking", true);
         }
         else
         {
             walking = false;
+            animator.SetBool("walking", false);
         }
 
         Debug.Log("walking" + walking);
