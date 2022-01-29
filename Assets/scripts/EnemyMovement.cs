@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private SpriteRenderer sr;
+
     private Rigidbody2D body;
     [SerializeField]
     float velocity;
@@ -38,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         //moveSpeed = new Vector2(10f, 0);
         //body.AddForce(moveSpeed, ForceMode2D.Force);
         //body.velocity = moveSpeed;
@@ -50,6 +53,14 @@ public class EnemyMovement : MonoBehaviour
         //body.velocity = new Vector2(moveSpeed, body.velocity.y);
         //body.AddForce(new Vector2(force, 0), ForceMode2D.Force);
 
+        if(direction >= 1 && !sr.flipX)
+        {
+            sr.flipX = true;
+        }
+        else if(direction <= -1 && sr.flipX)
+        {
+            sr.flipX = false;
+        }
     }
     private void FixedUpdate()
     {
