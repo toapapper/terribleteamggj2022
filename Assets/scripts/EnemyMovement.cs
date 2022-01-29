@@ -53,11 +53,11 @@ public class EnemyMovement : MonoBehaviour
         //body.velocity = new Vector2(moveSpeed, body.velocity.y);
         //body.AddForce(new Vector2(force, 0), ForceMode2D.Force);
 
-        if(direction >= 1 && !sr.flipX)
+        if (direction >= 1 && !sr.flipX)
         {
             sr.flipX = true;
         }
-        else if(direction <= -1 && sr.flipX)
+        else if (direction <= -1 && sr.flipX)
         {
             sr.flipX = false;
         }
@@ -76,7 +76,7 @@ public class EnemyMovement : MonoBehaviour
 
         grounded = Physics2D.OverlapArea(topLeft.position, bottomRight.position, groundLayers);
 
-        
+
 
 
 
@@ -135,13 +135,18 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-		touchingWall = Physics2D.OverlapArea(sideTopLeft.position, sideBottomRight.position, groundLayers);
+        touchingWall = Physics2D.OverlapArea(sideTopLeft.position, sideBottomRight.position, groundLayers);
 
         if (touchingWall)
         {
-            //float dir = Mathf.Sign(transform.position.x - collision.transform.position.x);
+            float dir = Mathf.Sign(transform.position.x - collision.transform.position.x);
+            Debug.Log(dir);
             //TurnTo(dir);
-            TurnAround();
+            if (dir != direction)
+            {
+                TurnAround();
+
+            }
         }
         if (collision.collider.tag == "Enemy")
         {

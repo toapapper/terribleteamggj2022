@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magneticForce: 500
   collisionForce: 2000
-  positiveCharge: 0
+  positiveCharge: 1
 --- !u!212 &6491188090365853705
 SpriteRenderer:
   m_ObjectHideFlags: 0
