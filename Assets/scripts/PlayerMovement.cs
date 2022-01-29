@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * controller.runSpeed;
-        if (horizontalMove != 0 && jump == false)
+        if (controller.isGroundedAndMoving)
         {
             walking = true;
         }
