@@ -7,7 +7,7 @@ public class MagnetController : MonoBehaviour
 	[SerializeField]private float magneticForce_on_others = 150f;
 	[SerializeField]private float magneticForce_on_me = 250f;
 	[SerializeField] private float collisionForce = 2000f;
-
+	[SerializeField] AudioSource magnetSFX;
 	private Rigidbody2D rb;
     private List<MagneticObject> nearbyObjects;
 	private CircleCollider2D collider;
