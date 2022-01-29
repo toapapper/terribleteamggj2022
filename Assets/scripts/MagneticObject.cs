@@ -14,4 +14,5 @@ public class MagneticObject : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 	}
+
 }

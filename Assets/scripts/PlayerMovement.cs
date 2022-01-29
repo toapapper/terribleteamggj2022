@@ -32,9 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            controller.MagnetController.PositiveCharge = !controller.MagnetController.PositiveCharge;
-            redPole.gameObject.SetActive(controller.MagnetController.PositiveCharge);
-            bluePole.gameObject.SetActive(!controller.MagnetController.PositiveCharge);
+            ChangePole();
         }
     }
 
@@ -42,5 +40,12 @@ public class PlayerMovement : MonoBehaviour
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
+    }
+
+    public void ChangePole()
+    {
+        controller.MagnetController.PositiveCharge = !controller.MagnetController.PositiveCharge;
+        redPole.gameObject.SetActive(controller.MagnetController.PositiveCharge);
+        bluePole.gameObject.SetActive(!controller.MagnetController.PositiveCharge);
     }
 }

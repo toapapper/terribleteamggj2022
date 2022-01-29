@@ -39,6 +39,8 @@ public class PlayerAttack : MonoBehaviour
         direction.z = 0;
         Debug.Log("DIR = " + direction);
         GetComponentInParent<Rigidbody2D>().AddForce(direction * 3000);
+        GetComponentInParent<PlayerMovement>().ChangePole();
+
     }
 
 
