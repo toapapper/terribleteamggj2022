@@ -4,20 +4,48 @@ using UnityEngine;
 
 public class MagnetController : MonoBehaviour
 {
-	[SerializeField]private float magneticForce = 500f;
+	[SerializeField]private float magneticForce_on_others = 150f;
+	[SerializeField]private float magneticForce_on_me = 250f;
 	[SerializeField] private float collisionForce = 2000f;
-	
+
 	private Rigidbody2D rb;
     private List<MagneticObject> nearbyObjects;
+	private CircleCollider2D collider;
+	[SerializeField] private SpriteRenderer circle;
 
     [SerializeField] private bool positiveCharge;
+
+	public static bool falloff_mode = false;
+
+	[SerializeField] private float radius = 2;
+
+	Color currentFieldColor = Color.red;
 
 	public bool PositiveCharge { get { return positiveCharge; } set { positiveCharge = value; } }
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+		rb = GetComponent<Rigidbody2D>();
 		nearbyObjects = new List<MagneticObject>();
+		collider = GetComponent<CircleCollider2D>();
+		collider.radius = radius;
+
+
+		if (circle != null)
+		{
+			if (positiveCharge)
+			{
+				currentFieldColor = Color.red;
+				circle.color = Color.red;
+			}
+			else if (!positiveCharge)
+			{
+				currentFieldColor = Color.blue;
+				circle.color = Color.blue;
+			}
+
+			circle.transform.localScale = new Vector3(radius, radius, radius);
+		}
 	}
 
 	private void FixedUpdate()
@@ -30,13 +58,31 @@ public class MagnetController : MonoBehaviour
 
 			if (magneticObject.tag == "Enemy")
 			{
-				ApplyMagneticForce(rb, magneticObject.RB, forceDirection);
+				ApplyMagneticForce(rb, magneticObject.RB, forceDirection, magneticForce_on_others);
 			}
 			else if(magneticObject.tag == "MagneticGround")
 			{
-				ApplyMagneticForce(magneticObject.RB, rb, forceDirection);
+				ApplyMagneticForce(magneticObject.RB, rb, forceDirection, magneticForce_on_me);
 			}
 		}
+		collider.radius = radius;
+
+		if(circle != null)
+        {
+			if(positiveCharge && currentFieldColor != Color.red)
+			{
+				currentFieldColor = Color.red;
+				circle.color = Color.red;
+			}
+			else if(!positiveCharge && currentFieldColor != Color.cyan)
+			{
+				currentFieldColor = Color.blue;
+				circle.color = Color.blue;
+			}
+
+			circle.transform.localScale = new Vector3(radius, radius, radius);
+        }
+
 	}
 
 	/// <summary>
@@ -45,35 +91,68 @@ public class MagnetController : MonoBehaviour
 	/// <param name="effectingObject"></param>
 	/// <param name="objectToEffect"></param>
 	/// <param name="forceDirection"></param>
-	public void ApplyMagneticForce(Rigidbody2D effectingObject, Rigidbody2D objectToEffect, int forceDirection)
+	public void ApplyMagneticForce(Rigidbody2D effectingObject, Rigidbody2D objectToEffect, int forceDirection, float force)
 	{
 		Vector2 direction = new Vector2(effectingObject.position.x, effectingObject.position.y) - new Vector2(objectToEffect.position.x, objectToEffect.position.y);
-		float distance = direction.magnitude;
-
-		float forceMagnitude = magneticForce / Mathf.Pow(distance, 2);
-		Vector2 force = direction.normalized * forceMagnitude * forceDirection;
-		objectToEffect.AddForce(force);
+        if (falloff_mode)
+        {
+			float distance = direction.magnitude;
+			float forceMagnitude = force / Mathf.Pow(distance, 2);
+			Vector2 forceV = direction.normalized * forceMagnitude * forceDirection;
+			objectToEffect.AddForce(forceV);
+        }
+		else if (!falloff_mode)
+        {
+			objectToEffect.AddForce(force * forceDirection * direction.normalized);
+        }
 	}
 
-	#region Colliders
-	/// <summary>
-	/// Adds repelling force to enemy on collision
-	/// </summary>
-	/// <param name="collision"></param>
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.tag == "Enemy")
+	//Metod som bara k�rs i editorn, n�r ett v�rde �ndrats
+    private void OnValidate()
+    {
+		if(collider == null)
+        {
+			collider = GetComponent<CircleCollider2D>();
+        }
+
+		collider.radius = radius;
+
+		if (circle != null)
 		{
-			Rigidbody2D enemyRB = collision.gameObject.GetComponent<Rigidbody2D>();
-			Vector2 direction = new Vector2(transform.position.x, transform.position.y) - new Vector2(collision.transform.position.x, collision.transform.position.y);
-			Vector2 force = direction.normalized * collisionForce;
-			enemyRB.velocity = Vector2.zero;
-			collision.gameObject.GetComponent<MagneticObject>().RB.AddForce(-force);
+			if (positiveCharge && currentFieldColor != Color.red)
+			{
+				currentFieldColor = Color.red;
+				circle.color = Color.red;
+			}
+			else if (!positiveCharge && currentFieldColor != Color.cyan)
+			{
+				currentFieldColor = Color.blue;
+				circle.color = Color.blue;
+			}
+
+			circle.transform.localScale = new Vector3(radius, radius, radius);
 		}
 	}
-	#endregion
 
-	#region Trigger
+//#region Colliders
+//    /// <summary>
+//    /// Adds repelling force to enemy on collision
+//    /// </summary>
+//    /// <param name="collision"></param>
+//    private void OnCollisionEnter2D(Collision2D collision)
+//	{
+//		if (collision.gameObject.tag == "Enemy")
+//		{
+//			Rigidbody2D enemyRB = collision.gameObject.GetComponent<Rigidbody2D>();
+//			Vector2 direction = new Vector2(transform.position.x, transform.position.y) - new Vector2(collision.transform.position.x, collision.transform.position.y);
+//			Vector2 force = direction.normalized * collisionForce;
+//			enemyRB.velocity = Vector2.zero;
+//			collision.gameObject.GetComponent<MagneticObject>().RB.AddForce(-force);
+//		}
+//	}
+//#endregion
+
+#region Trigger
 	/// <summary>
 	/// Enters magneticObject in nearbyObjects
 	/// </summary>
@@ -81,7 +160,7 @@ public class MagnetController : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D other)
     {
 		if (other.tag == "MagneticGround" || other.tag == "Enemy")
-        {			
+        {
 			if (!nearbyObjects.Contains(other.GetComponent<MagneticObject>()))
             {
                 nearbyObjects.Add(other.GetComponent<MagneticObject>());
@@ -102,5 +181,5 @@ public class MagnetController : MonoBehaviour
             }
         }
     }
-    #endregion
+#endregion
 }
