@@ -14,11 +14,8 @@ public class PlayerMovement : MonoBehaviour
     bool walking = false;
     float horizontalMove = 0f;
 
-    [SerializeField]
-    ParticleSystem redPole;
-    [SerializeField] 
-    ParticleSystem bluePole;
-
+    [SerializeField] ParticleSystem redPole;
+    [SerializeField] ParticleSystem bluePole;
 
     // Update is called once per frame
     void Update()
@@ -46,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
                     walkSFX.Stop();
                 }
             }
-            
+
         }
         else
         {
@@ -64,9 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            controller.MagnetController.PositiveCharge = !controller.MagnetController.PositiveCharge;
-            redPole.gameObject.SetActive(controller.MagnetController.PositiveCharge);
-            bluePole.gameObject.SetActive(!controller.MagnetController.PositiveCharge);
+            ChangePole();
         }
     }
 
@@ -74,5 +69,12 @@ public class PlayerMovement : MonoBehaviour
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
+    }
+
+    public void ChangePole()
+    {
+        controller.MagnetController.PositiveCharge = !controller.MagnetController.PositiveCharge;
+        redPole.gameObject.SetActive(controller.MagnetController.PositiveCharge);
+        bluePole.gameObject.SetActive(!controller.MagnetController.PositiveCharge);
     }
 }
