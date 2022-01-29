@@ -15,7 +15,7 @@ public class MagnetController : MonoBehaviour
 
     [SerializeField] private bool positiveCharge;
 
-	public static bool falloff_mode = false;
+	[SerializeField] public bool falloff_mode = false;
 
 	[SerializeField] private float radius = 2;
 
