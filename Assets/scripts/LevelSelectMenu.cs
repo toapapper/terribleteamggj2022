@@ -8,6 +8,7 @@ public class LevelSelectMenu : MonoBehaviour
 {
     public void ButtonPress(int level)    
     {
+        Debug.Log("load level");
         SceneManager.LoadScene(level);
     }
 }
