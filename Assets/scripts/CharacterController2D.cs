@@ -5,7 +5,6 @@ using System.Collections;
 
 public class CharacterController2D : MonoBehaviour
 {
-    GameManager gameManager;
 
     [SerializeField] public float runSpeed = 10f;
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player starts jumping.
@@ -49,8 +48,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
-
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         magnetController = GetComponent<MagnetController>();
 
@@ -203,7 +200,15 @@ public class CharacterController2D : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            gameManager.PlayerDeath();
+            GameManager.Instance.PlayerDeath();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "FinishTrigger")
+        {
+            GameManager.Instance.FinishLevel();
         }
     }
     #endregion
