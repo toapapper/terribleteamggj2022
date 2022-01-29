@@ -33,15 +33,12 @@ public class CharacterController2D : MonoBehaviour
 
     public bool isGroundedAndMoving
     {
-        get { return m_Grounded && Math.Abs(m_Velocity.x) > 0; }
+        get { return m_Grounded && Input.GetButton("Horizontal"); }
     }
 
     private MagnetController magnetController;
 
-    [Header("Events")]
-    [Space]
-
-    public UnityEvent OnLandEvent;
+    [Header("Events")][Space] public UnityEvent OnLandEvent;
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
