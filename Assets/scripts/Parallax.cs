@@ -27,10 +27,10 @@ public class Parallax : MonoBehaviour
         transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplierX, deltaMovement.y * parallaxEffectMultiplierY);
         previousCamPos = cam.position;
 
-        if (cam.position.x - transform.position.x >= textureUnitSizeX)
-        {
-            float offSetPositionX = (cam.position.x - transform.position.x) % textureUnitSizeX;
-            transform.position = new Vector3(cam.position.x + offSetPositionX, transform.position.y);
-        }
+        //if (cam.position.x - transform.position.x >= textureUnitSizeX)
+        //{
+        //    float offSetPositionX = (cam.position.x - transform.position.x) % textureUnitSizeX;
+        //    transform.position = new Vector3(cam.position.x + offSetPositionX, transform.position.y);
+        //}
     }
 }
