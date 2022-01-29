@@ -5619,6 +5619,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519420028, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458504305515402039, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6491188090365853706, guid: c34a53000efd84c4aa7f759885f4a78e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6320,9 +6328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCD: 0
-  lm:
-    serializedVersion: 2
-    m_Bits: 1536
 --- !u!1839735485 &761626349786281690
 Tilemap:
   m_ObjectHideFlags: 0
