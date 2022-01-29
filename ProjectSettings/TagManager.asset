@@ -7,6 +7,7 @@ TagManager:
   - MagneticGround
   - Enemy
   - EnemyTurnTrigger
+  - DeathBox
   layers:
   - Default
   - TransparentFX
