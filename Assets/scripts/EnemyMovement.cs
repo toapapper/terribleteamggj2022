@@ -33,11 +33,8 @@ public class EnemyMovement : MonoBehaviour
     bool grounded;
     bool touchingWall;
     [SerializeField]
-    float maxSpeed = 5;
-    
-    public float MaxSpeed { get { return maxSpeed; } }
-    
-    float acceleration = 2;
+    int maxSpeed = 5;
+    int acceleration = 2;
 
     // Start is called before the first frame update
     void Start()

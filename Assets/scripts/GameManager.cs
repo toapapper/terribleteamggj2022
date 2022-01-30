@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         {
             PlayerDeath();
         }
+
+        PauseGame();
     }
 
     public void PlayerDeath()
@@ -97,5 +99,22 @@ public class GameManager : MonoBehaviour
     public float GetTimer()
     {
         return timer;
+    }
+
+    void PauseGame()
+    {
+        if (Time.timeScale == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("TIME UNPAUSED");
+                Time.timeScale = 1;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("TIME PAUSED");
+            Time.timeScale = 0;
+        }
     }
 }
