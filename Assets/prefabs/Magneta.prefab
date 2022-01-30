@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8035370962420413516}
   - component: {fileID: 8035370962420413517}
+  - component: {fileID: 5924570246138542672}
   - component: {fileID: 8035370962420413514}
   - component: {fileID: 8035370962420413515}
+  - component: {fileID: 1069137911254622913}
   m_Layer: 0
-  m_Name: FinishCollider
+  m_Name: Magneta
   m_TagString: FinishTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +86,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5924570246138542672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035370962420413512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d218181715e4c994eb5d670f3f1f359a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &8035370962420413514
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,3 +145,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1069137911254622913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035370962420413512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b253f0b46ccdd8478acb3c2f6f0df40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positiveCharge: 0
