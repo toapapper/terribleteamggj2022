@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f232b5d5fbcaa04da3609b5e301612c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magneticForce_on_others: 500
+  magneticForce_on_others: 25
   magneticForce_on_me: 250
   collisionForce: 2000
   circle: {fileID: 408984073}
@@ -1009,7 +1009,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 4.3
 --- !u!1001 &4323352991356147647
 PrefabInstance:
   m_ObjectHideFlags: 0
