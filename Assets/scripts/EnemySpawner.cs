@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private float cooldown = 10;
+    private float timer;
     // Update is called once per frame
+
+    private void Start()
+    {
+        timer = cooldown;
+    }
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer >= cooldown)
+        {
+            timer = 0;
+            GameObject GO = Instantiate<GameObject>(prefab,transform);
+            GO.transform.localScale = new Vector3(2, 2, 2);
+        }
     }
 }
