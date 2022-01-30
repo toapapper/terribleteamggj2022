@@ -18,9 +18,7 @@ public class ContinousMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float timePassed = Time.deltaTime;
-
-        float newPositionX = movingLeft ? transform.position.x + speed * timePassed: transform.position.x - speed * timePassed;
+        float newPositionX = movingLeft ? transform.position.x + speed * 0.01f : transform.position.x - speed * 0.01f;
         transform.position = new Vector3(newPositionX, transform.position.y, transform.position.z);
 
         

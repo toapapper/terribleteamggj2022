@@ -32,6 +32,5 @@ public class LevelSelectMenu : MonoBehaviour
         Debug.Log("load level");
         SceneManager.LoadScene(level);
         GameManager.Instance.ResetTimer();
-        GameManager.Instance.currentScene = level;
     }
 }

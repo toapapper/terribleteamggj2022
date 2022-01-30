@@ -57,15 +57,11 @@ public class PlayerMovement : MonoBehaviour
             walkSFX.Stop();
         }
 
-        if(controller.isGrounded && jump == true)
-        {
-            jumpSFX.Play();
-        }
 
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
-
+            jumpSFX.Play();
         }
         if (Input.GetButtonUp("Jump"))
         {

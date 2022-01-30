@@ -60,7 +60,18 @@ public class MagnetController : MonoBehaviour
 
 			if (magneticObject.tag == "Enemy")
 			{
-				ApplyMagneticForce(rb, magneticObject.RB, forceDirection, magneticForce_on_others, false);
+
+				if (magneticObject.GetComponent<Rigidbody2D>().velocity.magnitude < magneticObject.GetComponent<EnemyMovement>().MaxSpeed * 2)
+                {
+					float force = magneticForce_on_others;
+					if (forceDirection == 1)
+					{
+						force *= towards_ratio;
+					}
+					ApplyMagneticForce(rb, magneticObject.RB, forceDirection, force, false);
+                }
+
+
 			}
 			else if(magneticObject.tag == "MagneticGround")
 			{
@@ -99,10 +110,7 @@ public class MagnetController : MonoBehaviour
 	/// <param name="forceDirection"></param>
 	public void ApplyMagneticForce(Rigidbody2D effectingObject, Rigidbody2D objectToEffect, int forceDirection, float force, bool fallof)
 	{
-		if(forceDirection == 1)
-        {
-			force *= towards_ratio;
-        }
+		
 
 		Vector2 direction = new Vector2(effectingObject.position.x, effectingObject.position.y) - new Vector2(objectToEffect.position.x, objectToEffect.position.y);
         if (fallof)
