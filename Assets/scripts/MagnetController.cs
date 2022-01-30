@@ -19,6 +19,8 @@ public class MagnetController : MonoBehaviour
 
 	[SerializeField] private float radius = 2;
 
+	[SerializeField] private float towards_ratio = .3f;
+
 	Color currentFieldColor = Color.red;
 
 	public bool PositiveCharge { get { return positiveCharge; } set { positiveCharge = value; } }
@@ -93,6 +95,11 @@ public class MagnetController : MonoBehaviour
 	/// <param name="forceDirection"></param>
 	public void ApplyMagneticForce(Rigidbody2D effectingObject, Rigidbody2D objectToEffect, int forceDirection, float force, bool fallof)
 	{
+		if(forceDirection == 1)
+        {
+			force *= towards_ratio;
+        }
+
 		Vector2 direction = new Vector2(effectingObject.position.x, effectingObject.position.y) - new Vector2(objectToEffect.position.x, objectToEffect.position.y);
         if (fallof)
         {

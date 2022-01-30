@@ -532,6 +532,7 @@ MonoBehaviour:
   positiveCharge: 0
   falloff_mode: 1
   radius: 4.34
+  towards_ratio: 0.5
 --- !u!50 &6491188090365853704
 Rigidbody2D:
   serializedVersion: 4
