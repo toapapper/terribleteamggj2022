@@ -37,6 +37,11 @@ public class CharacterController2D : MonoBehaviour
         get { return m_Grounded && Input.GetButton("Horizontal"); }
     }
 
+    public bool isGrounded
+    {
+        get { return m_Grounded; }
+    }
+
     private MagnetController magnetController;
 
     [Header("Events")][Space] public UnityEvent OnLandEvent;
