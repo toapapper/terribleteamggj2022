@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     GameObject particleEffect;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
+
         Instantiate(particleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
