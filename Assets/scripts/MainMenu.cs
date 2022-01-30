@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class MainMenu : MonoBehaviour
     GameObject options;
     [SerializeField]
     GameObject buttons;
+    [SerializeField]
+    GameObject masterslider;
+    [SerializeField]
+    GameObject startButton;
+    [SerializeField]
+    GameObject creditsBackButton;
 
     [SerializeField] AudioMixer mixer;
     private void Awake()
@@ -57,11 +64,27 @@ public class MainMenu : MonoBehaviour
     {
         buttons.SetActive(!buttons.activeInHierarchy);
         credits.SetActive(!credits.activeInHierarchy);
+        if (!credits.activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(startButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(creditsBackButton);
+        }
     }
 
     public void OptionsButton()
     {
         buttons.SetActive(!buttons.activeInHierarchy);
         options.SetActive(!options.activeInHierarchy);
+        if (!options.activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(startButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(masterslider);
+        }
     }
 }
