@@ -184,7 +184,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: 0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 7038611367004601817, guid: f4c7a0696d675e146a03d17ed4a470ed, type: 3}
-  dieSFX: {fileID: 5181801600471656720}
 --- !u!82 &5181801600471656720
 AudioSource:
   m_ObjectHideFlags: 0
