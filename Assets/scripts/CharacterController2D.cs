@@ -170,7 +170,7 @@ public class CharacterController2D : MonoBehaviour
         // If the player is holding jump
         else if (currentlyJumping && !jumpLimitReached)
         {
-            if (!Input.GetKey(KeyCode.W))
+            if (!Input.GetButton("Jump"))
             {
                 currentlyJumping = false;
                 jumpLimitReached = true;
