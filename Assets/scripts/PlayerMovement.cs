@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator_handler>();
+        GameManager.Instance.player = gameObject;
     }
 
     // Update is called once per frame

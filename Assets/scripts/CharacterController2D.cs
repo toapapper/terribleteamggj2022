@@ -219,6 +219,7 @@ public class CharacterController2D : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            m_animator.SetTrigger("death");
             GameManager.Instance.PlayerDeath();
         }
         if (collision.gameObject.tag == "FinishTrigger")
