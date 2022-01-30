@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingLeft: 1
-  speed: 0.44
+  speed: 0.17
 --- !u!1 &6758885314369872195
 GameObject:
   m_ObjectHideFlags: 0
