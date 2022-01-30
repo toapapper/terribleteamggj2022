@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f232b5d5fbcaa04da3609b5e301612c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magneticForce_on_others: 25
+  magneticForce_on_others: 75
   magneticForce_on_me: 250
   collisionForce: 2000
   circle: {fileID: 408984073}
