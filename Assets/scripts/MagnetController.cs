@@ -178,7 +178,7 @@ public class MagnetController : MonoBehaviour
 	/// <param name="other"></param>
 	private void OnTriggerEnter2D(Collider2D other)
     {
-		if (other.tag == "MagneticGround" || other.tag == "Enemy")
+		if (other.tag == "MagneticGround" || other.tag == "Enemy" || other.tag == "FinishTrigger")
         {
 			if (!nearbyObjects.Contains(other.GetComponent<MagneticObject>()))
             {
@@ -192,7 +192,7 @@ public class MagnetController : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "MagneticGround" || other.tag == "Enemy")
+        if (other.tag == "MagneticGround" || other.tag == "Enemy" || other.tag == "FinishTrigger")
         {
             if (nearbyObjects.Contains(other.GetComponent<MagneticObject>()))
             {
