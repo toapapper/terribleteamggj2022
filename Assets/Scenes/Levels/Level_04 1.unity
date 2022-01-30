@@ -1634,7 +1634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436386777013886450, guid: e009b828d2504094da2653957b3884b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.41
+      value: -13.68
       objectReference: {fileID: 0}
     - target: {fileID: 8436386777013886450, guid: e009b828d2504094da2653957b3884b4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -66087,7 +66087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789073244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: 13.94, z: -72.00293}
+  m_LocalPosition: {x: -12, y: 14, z: -72.00293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -66581,7 +66581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964399936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 57.5, z: -72.00293}
+  m_LocalPosition: {x: -28, y: 57.5, z: -72.00293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -66694,6 +66694,10 @@ PrefabInstance:
     - target: {fileID: 5007328734270878944, guid: 748f0da31e45c1a43aa03c65442a7b80, type: 3}
       propertyPath: m_Name
       value: NegativMagnet (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007328734270878944, guid: 748f0da31e45c1a43aa03c65442a7b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5007328734270878949, guid: 748f0da31e45c1a43aa03c65442a7b80, type: 3}
       propertyPath: m_RootOrder
