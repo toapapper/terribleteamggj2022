@@ -66,6 +66,10 @@ public class MagnetController : MonoBehaviour
 			{
 				ApplyMagneticForce(magneticObject.RB, rb, forceDirection, magneticForce_on_me, true);
 			}
+			else if(magneticObject.tag == "FinishTrigger")
+            {
+				ApplyMagneticForce(magneticObject.RB, rb, forceDirection, magneticForce_on_me, true);
+			}
 		}
 		collider.radius = radius;
 

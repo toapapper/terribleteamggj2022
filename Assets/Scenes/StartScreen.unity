@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Magnificent Magnus
+  m_text: Magnet Magnus
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f99c2f7dcbc051349a6ec5747f269f46, type: 2}
   m_sharedMaterial: {fileID: -8322884031989144894, guid: f99c2f7dcbc051349a6ec5747f269f46, type: 2}

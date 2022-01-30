@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public event Action GamePaused;
     public event Action GameUnPaused;
 
+    [SerializeField] AudioSource playerDeathSFX;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath()
     {
+        playerDeathSFX.Play();
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         player.GetComponent<MagnetController>().enabled = false;
         foreach (Collider2D collider in player.GetComponents<Collider2D>())
