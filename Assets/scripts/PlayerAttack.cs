@@ -8,6 +8,8 @@ public class PlayerAttack : MonoBehaviour
     private float timer;
     private List<GameObject> objectsWithin;
     [SerializeField] private float knockback = 1000;
+    [SerializeField]
+    AudioSource dieSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
             direction += transform.position - objectsWithin[i].transform.position;
             if (objectsWithin[i].CompareTag("Enemy"))
             {
+                dieSFX.Play();
                 objectsWithin[i].gameObject.GetComponent<EnemyController>().Die();
                 enemyBoost++;
             }
