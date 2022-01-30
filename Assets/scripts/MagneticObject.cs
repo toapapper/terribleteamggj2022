@@ -8,7 +8,7 @@ public class MagneticObject : MonoBehaviour
 	[SerializeField] private bool positiveCharge;
 
 	public Rigidbody2D RB { get { return rb; } }
-	public bool PositiveCharge { get { return positiveCharge; } }
+	public bool PositiveCharge { get { return positiveCharge; } set { positiveCharge = value; } }
 
 	private void Awake()
 	{

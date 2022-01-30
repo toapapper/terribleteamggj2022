@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public int currentScene = 1;
     float timer;
 
+    public event Action GamePaused;
+    public event Action GameUnPaused;
+
+    [SerializeField] AudioSource playerDeathSFX;
 
     // Start is called before the first frame update
     void Awake()
@@ -45,10 +49,17 @@ public class GameManager : MonoBehaviour
         {
             PlayerDeath();
         }
+        if (currentScene > 0)
+        {
+            PauseGame();
+            ResumeGame();
+
+        }
     }
 
     public void PlayerDeath()
     {
+        playerDeathSFX.Play();
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         player.GetComponent<MagnetController>().enabled = false;
         foreach (Collider2D collider in player.GetComponents<Collider2D>())
@@ -97,5 +108,49 @@ public class GameManager : MonoBehaviour
     public float GetTimer()
     {
         return timer;
+    }
+
+    void PauseGame()
+    {
+        if (Time.timeScale == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Time.timeScale = 0;
+                GamePaused?.Invoke();
+                return;
+            }
+        }
+        if (Time.timeScale == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GameUnPaused?.Invoke();
+                Time.timeScale = 1;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene("MainMenu");
+                currentScene = 0;
+            }
+        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    GamePaused?.Invoke();
+        //    Debug.Log("TIME PAUSED");
+        //    Time.timeScale = 0;
+        //}
+    }
+
+    public void ResumeGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale = 1;
+            GameUnPaused?.Invoke();
+
+        }
     }
 }
