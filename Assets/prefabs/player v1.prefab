@@ -505,7 +505,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   m_GroundCheck: {fileID: 6491188091048884483}
-  m_GroundCheckCollider: {fileID: 0}
   m_CeilingCheck: {fileID: 6491188090227497167}
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
