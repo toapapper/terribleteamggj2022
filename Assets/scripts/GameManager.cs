@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public int currentScene = 1;
     float timer;
-    [SerializeField] AudioSource playerDeathSFX;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -45,13 +45,10 @@ public class GameManager : MonoBehaviour
         {
             PlayerDeath();
         }
-
-        PauseGame();
     }
 
     public void PlayerDeath()
     {
-        playerDeathSFX.Play();
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         player.GetComponent<MagnetController>().enabled = false;
         foreach (Collider2D collider in player.GetComponents<Collider2D>())
@@ -100,22 +97,5 @@ public class GameManager : MonoBehaviour
     public float GetTimer()
     {
         return timer;
-    }
-
-    void PauseGame()
-    {
-        if (Time.timeScale == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("TIME UNPAUSED");
-                Time.timeScale = 1;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("TIME PAUSED");
-            Time.timeScale = 0;
-        }
     }
 }

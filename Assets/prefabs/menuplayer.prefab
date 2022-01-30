@@ -128,7 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCD: 0.5
   knockback: 1000
-  dieSFX: {fileID: 0}
 --- !u!58 &728877916370127704
 CircleCollider2D:
   m_ObjectHideFlags: 0
