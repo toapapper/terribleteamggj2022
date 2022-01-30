@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -370,7 +370,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f232b5d5fbcaa04da3609b5e301612c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magneticForce_on_others: 150
+  magneticForce_on_others: 500
   magneticForce_on_me: 250
   collisionForce: 2000
   circle: {fileID: 408984073}
@@ -1009,7 +1009,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!1001 &4323352991356147647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1031,7 +1031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395823178644450962, guid: 175736d1644f8d347ac5708eff90cfc0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2395823178644450962, guid: 175736d1644f8d347ac5708eff90cfc0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1110,7 +1110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6777987938063847962, guid: 7afd81b5ab9dc034aa154dc9fa43df7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6777987938063847962, guid: 7afd81b5ab9dc034aa154dc9fa43df7d, type: 3}
       propertyPath: m_LocalRotation.w
