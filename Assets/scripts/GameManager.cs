@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerDeath();
         }
-        if (currentScene > 0)
+        if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             PauseGame();
             ResumeGame();
