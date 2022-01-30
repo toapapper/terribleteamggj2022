@@ -917,7 +917,7 @@ MonoBehaviour:
   red: {fileID: 400201463}
   blueSprite: {fileID: 1004919850}
   redSprite: {fileID: 400201461}
-  redActive: 1
+  redActive: 0
 --- !u!1 &6491188091048884482
 GameObject:
   m_ObjectHideFlags: 0

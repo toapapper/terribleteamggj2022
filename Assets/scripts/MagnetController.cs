@@ -58,11 +58,11 @@ public class MagnetController : MonoBehaviour
 
 			if (magneticObject.tag == "Enemy")
 			{
-				ApplyMagneticForce(rb, magneticObject.RB, forceDirection, magneticForce_on_others);
+				ApplyMagneticForce(rb, magneticObject.RB, forceDirection, magneticForce_on_others, false);
 			}
 			else if(magneticObject.tag == "MagneticGround")
 			{
-				ApplyMagneticForce(magneticObject.RB, rb, forceDirection, magneticForce_on_me);
+				ApplyMagneticForce(magneticObject.RB, rb, forceDirection, magneticForce_on_me, true);
 			}
 		}
 		collider.radius = radius;
@@ -91,17 +91,17 @@ public class MagnetController : MonoBehaviour
 	/// <param name="effectingObject"></param>
 	/// <param name="objectToEffect"></param>
 	/// <param name="forceDirection"></param>
-	public void ApplyMagneticForce(Rigidbody2D effectingObject, Rigidbody2D objectToEffect, int forceDirection, float force)
+	public void ApplyMagneticForce(Rigidbody2D effectingObject, Rigidbody2D objectToEffect, int forceDirection, float force, bool fallof)
 	{
 		Vector2 direction = new Vector2(effectingObject.position.x, effectingObject.position.y) - new Vector2(objectToEffect.position.x, objectToEffect.position.y);
-        if (falloff_mode)
+        if (fallof)
         {
 			float distance = direction.magnitude;
 			float forceMagnitude = force / Mathf.Pow(distance, 2);
 			Vector2 forceV = direction.normalized * forceMagnitude * forceDirection;
 			objectToEffect.AddForce(forceV);
         }
-		else if (!falloff_mode)
+		else if (!fallof)
         {
 			objectToEffect.AddForce(force * forceDirection * direction.normalized);
         }
