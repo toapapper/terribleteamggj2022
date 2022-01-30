@@ -32,18 +32,21 @@ public class PlayerAttack : MonoBehaviour
     private void Attack()
     {
         Vector3 direction = Vector3.zero;
+        int enemyBoost = 2;
         for (int i = 0; i < objectsWithin.Count; i++)
         {
             direction += transform.position - objectsWithin[i].transform.position;
             if (objectsWithin[i].CompareTag("Enemy"))
             {
                 objectsWithin[i].gameObject.GetComponent<EnemyController>().Die();
+                enemyBoost++;
             }
         }
         direction.Normalize();
         direction.z = 0;
         Debug.Log("DIR = " + direction);
-        GetComponentInParent<Rigidbody2D>().AddForce(direction * knockback);
+
+        GetComponentInParent<Rigidbody2D>().AddForce(direction * knockback * enemyBoost);
         GetComponentInParent<PlayerMovement>().ChangePole();
 
     }
