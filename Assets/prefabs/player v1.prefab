@@ -211,7 +211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6491188090365853706}
@@ -525,13 +525,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f232b5d5fbcaa04da3609b5e301612c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magneticForce_on_others: 500
+  magneticForce_on_others: 75
   magneticForce_on_me: 250
   collisionForce: 2000
   circle: {fileID: 408984073}
   positiveCharge: 0
   falloff_mode: 1
   radius: 4.34
+  towards_ratio: 0.5
 --- !u!50 &6491188090365853704
 Rigidbody2D:
   serializedVersion: 4
@@ -917,7 +918,7 @@ MonoBehaviour:
   red: {fileID: 400201463}
   blueSprite: {fileID: 1004919850}
   redSprite: {fileID: 400201461}
-  redActive: 1
+  redActive: 0
 --- !u!1 &6491188091048884482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1010,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 4.3
 --- !u!1001 &4323352991356147647
 PrefabInstance:
   m_ObjectHideFlags: 0
