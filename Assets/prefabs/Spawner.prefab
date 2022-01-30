@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4369173656710866018, guid: d9b5f9b644ab46f43b7ff25afbab1d0e, type: 3}
-  cooldown: 10
+  cooldown: 5
