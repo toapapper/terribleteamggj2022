@@ -15,11 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem redPole;
     [SerializeField] ParticleSystem bluePole;
 
-    private Animator animator;
+    private Animator_handler animator;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator_handler>();
     }
 
     // Update is called once per frame
@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
             jump = false;
+            animator.SetBool("jump", false);
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -85,5 +86,8 @@ public class PlayerMovement : MonoBehaviour
         controller.MagnetController.PositiveCharge = !controller.MagnetController.PositiveCharge;
         redPole.gameObject.SetActive(controller.MagnetController.PositiveCharge);
         bluePole.gameObject.SetActive(!controller.MagnetController.PositiveCharge);
+
+        animator.SetTrigger("attack");
+        animator.SetActiveColour(controller.MagnetController.PositiveCharge);
     }
 }

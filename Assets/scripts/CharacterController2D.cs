@@ -30,7 +30,7 @@ public class CharacterController2D : MonoBehaviour
     bool currentlyJumping = false;
     float jumpTimeCounter = 0;
 
-    private Animator m_animator;
+    private Animator_handler m_animator;
 
     public bool isGroundedAndMoving
     {
@@ -54,7 +54,7 @@ public class CharacterController2D : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         magnetController = GetComponent<MagnetController>();
 
-        m_animator = GetComponent<Animator>();
+        m_animator = GetComponent<Animator_handler>();
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
@@ -80,6 +80,16 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
+
+        if (m_Grounded)
+        {
+            m_animator.SetBool("in_air", false);
+        }
+        else
+        {
+            m_animator.SetBool("in_air", true);
+        }
+
     }
 
     public void Move(float move, bool crouch, bool jump)
@@ -131,12 +141,7 @@ public class CharacterController2D : MonoBehaviour
 
             if (!m_Grounded)
             {
-                m_animator.SetBool("in_air", false);
                 targetVelocity.x *= airControlAccelleration;
-            }
-            else
-            {
-                m_animator.SetBool("in_air", true);
             }
 
             // And then smoothing it out and applying it to the character
@@ -174,8 +179,8 @@ public class CharacterController2D : MonoBehaviour
             {
                 currentlyJumping = false;
                 jumpLimitReached = true;
+                m_animator.SetBool("jump", false);
             }
-
             jumpTimeCounter += Time.deltaTime;
             if (currentlyJumping && jumpTimeCounter >= jumpLimitTime)
             {
@@ -183,10 +188,12 @@ public class CharacterController2D : MonoBehaviour
                 jumpTimeCounter = 0;
                 jump = false;
                 currentlyJumping = false;
+                m_animator.SetBool("jump", false);
             }
             else
             {
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_AdditionalJumpForce));
+                m_animator.SetBool("jump", true);
             }
         }
     }
