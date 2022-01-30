@@ -4,23 +4,44 @@ using UnityEngine;
 
 public class Magneta : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private float cooldown = 10;
-    private float timer;
-    // Update is called once per frame
+    [SerializeField]SpriteRenderer blue;
+    [SerializeField]SpriteRenderer red;
 
-    private void Start()
+    GameObject player;
+    MagnetController playerMagn;
+
+    MagneticObject magn;
+
+    bool positiveCharge = false;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        timer = cooldown;
+        player = GameObject.FindWithTag("Player");
+        playerMagn = player.GetComponent<MagnetController>();
+        magn = GetComponent<MagneticObject>();
+
+        positiveCharge = playerMagn.PositiveCharge;
+    }
+
+    public void UpdateMagnetism()
+    {
+        if(playerMagn.PositiveCharge && positiveCharge)
+        {
+            positiveCharge = false;
+            red.enabled = false;
+            blue.enabled = true;
+        }
+        else if(!playerMagn.PositiveCharge && !positiveCharge)
+        {
+            positiveCharge = true;
+            red.enabled = true;
+            blue.enabled = false;
+        }
+        magn.PositiveCharge = positiveCharge;
     }
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= cooldown)
-        {
-            timer = 0;
-            GameObject GO = Instantiate<GameObject>(prefab,transform);
-            GO.transform.localScale = new Vector3(2, 2, 2);
-        }
+        UpdateMagnetism();
     }
 }

@@ -66,6 +66,10 @@ public class MagnetController : MonoBehaviour
 			{
 				ApplyMagneticForce(magneticObject.RB, rb, forceDirection, magneticForce_on_me, true);
 			}
+			else if(magneticObject.tag == "FinishTrigger")
+            {
+				ApplyMagneticForce(magneticObject.RB, rb, forceDirection, magneticForce_on_me, true);
+			}
 		}
 		collider.radius = radius;
 
@@ -166,7 +170,7 @@ public class MagnetController : MonoBehaviour
 	/// <param name="other"></param>
 	private void OnTriggerEnter2D(Collider2D other)
     {
-		if (other.tag == "MagneticGround" || other.tag == "Enemy")
+		if (other.tag == "MagneticGround" || other.tag == "Enemy" || other.tag == "FinishTrigger")
         {
 			if (!nearbyObjects.Contains(other.GetComponent<MagneticObject>()))
             {
@@ -180,7 +184,7 @@ public class MagnetController : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "MagneticGround" || other.tag == "Enemy")
+        if (other.tag == "MagneticGround" || other.tag == "Enemy" || other.tag == "FinishTrigger")
         {
             if (nearbyObjects.Contains(other.GetComponent<MagneticObject>()))
             {
