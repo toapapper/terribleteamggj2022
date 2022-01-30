@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerDeath();
+        }
     }
 
     public void PlayerDeath()
