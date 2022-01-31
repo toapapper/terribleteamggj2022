@@ -36,6 +36,10 @@ public class MainMenu : MonoBehaviour
 
     private void UpdateMixer()
     {
+        if (PlayerPrefs.GetFloat("MasterVolume") == 0)
+        {
+            PlayerPrefs.SetFloat("MasterVolume", 0.3f);
+        }
         float masterValue = PlayerPrefs.GetFloat("MasterVolume");
         float musicValue = PlayerPrefs.GetFloat("MusicVolume");
         float sfxValue = PlayerPrefs.GetFloat("SFXVolume");
