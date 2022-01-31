@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
 
         GetComponentInParent<Rigidbody2D>().AddForce(direction * knockback * enemyBoost);
         GetComponentInParent<PlayerMovement>().ChangePole();
-
+        CameraShake.Shake(0.2f, 0.2f);
     }
 
 
