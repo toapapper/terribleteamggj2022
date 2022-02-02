@@ -21,6 +21,10 @@ public class MainMenu : MonoBehaviour
     GameObject startButton;
     [SerializeField]
     GameObject creditsBackButton;
+    [SerializeField]
+    GameObject levelSelect;
+    [SerializeField]
+    GameObject level1Button;
 
     [SerializeField] AudioMixer mixer;
     private void Awake()
@@ -89,6 +93,20 @@ public class MainMenu : MonoBehaviour
         else
         {
             EventSystem.current.SetSelectedGameObject(masterslider);
+        }
+    }
+
+    public void LevelSelect()
+    {
+        buttons.SetActive(!buttons.activeInHierarchy);
+        levelSelect.SetActive(!levelSelect.activeInHierarchy);
+        if (!levelSelect.activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(startButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(level1Button);
         }
     }
 }
