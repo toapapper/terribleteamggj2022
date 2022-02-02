@@ -96,7 +96,16 @@ public class GameManager : MonoBehaviour
     {
         currentScene++;
         Debug.LogWarning("Currentscene:" + currentScene);
-        SceneManager.LoadScene(currentScene);
+        Debug.LogWarning("SceneCount: " + SceneManager.sceneCountInBuildSettings);
+        if (SceneManager.sceneCountInBuildSettings > currentScene)
+        {
+            SceneManager.LoadScene(currentScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+            currentScene = 1;
+        }
         ResetTimer();
     }
 
