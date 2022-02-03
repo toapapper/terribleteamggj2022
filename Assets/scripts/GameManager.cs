@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public event Action GamePaused;
     public event Action GameUnPaused;
+    public event Action<int> GameChangeLevel;
 
     [SerializeField] AudioSource playerDeathSFX;
 
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         player = FindObjectOfType<CharacterController2D>()?.gameObject;
     }
+
 
     private void Update()
     {
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentScene);
         player.GetComponent<PlayerMovement>().enabled = false;
         ResetTimer();
+        StartCoroutine(FireChangeLevelEvent(0.05f));
         yield return null;
     }
 
@@ -107,6 +110,22 @@ public class GameManager : MonoBehaviour
             currentScene = 1;
         }
         ResetTimer();
+
+        StartCoroutine(FireChangeLevelEvent(0.05f));
+    }
+
+    public void ChangeToScene(int scene)
+    {
+        currentScene = scene;
+        SceneManager.LoadScene(scene);
+        ResetTimer();
+        StartCoroutine(FireChangeLevelEvent(0.05f));
+    }
+    private IEnumerator FireChangeLevelEvent(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GameChangeLevel?.Invoke(currentScene);
+        yield return null;
     }
 
     public void ResetTimer()
